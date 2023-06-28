@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mandarl Art</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        div {
+            border: solid red;
+        }
+
+        .content {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-table {
+            margin: auto;
+            width: 40%;
+            position: relative;
+        }
+
+        .content-table:after {
+            padding-bottom: 100%;
+            display: block;
+            content: "";
+        }
+
+        .content-table-mandal {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        td > input {
+            margin: 0 auto;
+            width: 100%;
+            border: 1px solid green;
+            outline: none;
+            text-align: center;
+        }
+
+        .content-submit-btn {
+            border: 1px solid red;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: row;
+        }
+
+        .submit-btn {
+            width: 100px;
+            height: 30px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function save() {
+            let url = "http://localhost:8080/mandal";
+            let test = {
+                "Title": "Mandal Project",
+                "Task": "Post Mapping Test"
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json;charset=utf-8'},
+                credentials: 'include',
+                body: JSON.stringify(test)
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log(JSON.stringify(myJson));
+                });
+        }
+    </script>
+</head>
+<body>
+<div class="title">
+    <h1>
+        Mandal Art
+    </h1>
+</div>
+<div class="discription">
+    <ul>
+        <li>가장 가운데에 당신의 최종 목표를 작성 주세요</li>
+        <li>왼쪽 위에서부터 시계 방향으로 최종 목표를 달성하기위한 하위 목표를 설정해 주세요.</li>
+    </ul>
+</div>
+<div class="content">
+    <div class="content-table">
+        <table class="content-table-mandal">
+            <tbody>
+            <tr>
+                <td><input type="text" name="sub1" placeholder="하위목표1"></td>
+                <td><input type="text" name="sub2" placeholder="하위목표2"></td>
+                <td><input type="text" name="sub3" placeholder="하위목표3"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="sub4" placeholder="하위목표4"></td>
+                <td><input type="text" name="goal" placeholder="최종목표"></td>
+                <td><input type="text" name="sub5" placeholder="하위목표5"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="sub6" placeholder="하위목표6"></td>
+                <td><input type="text" name="sub7" placeholder="하위목표7"></td>
+                <td><input type="text" name="sub8" placeholder="하위목표8"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="content-submit-btn">
+        <div class="submit-btn" onclick="save()">Submit</div>
+    </div>
+</div>
+
+</body>
+</html>

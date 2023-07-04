@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class mandalController {
+public class MandalController {
     @PostMapping(value = "/mandal")
     public Map mandalSave(@RequestBody Map<String, Object> requestData) {
         Map<String, Object> result = new HashMap();
